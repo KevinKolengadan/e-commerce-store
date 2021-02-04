@@ -1,11 +1,11 @@
-import { updateUser } from './../state/user.actions';
 import { UserService } from '../services/user.service';
-import { User } from './../model/user.model';
-import { selectUser } from './../state/app.selectors';
 import { Store, select } from '@ngrx/store';
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import {AppState} from '../state/app.state';
+import {selectUser} from '../state/app.selectors';
+import {User} from '../model/user.model';
+import {updateUser} from '../state/user.actions';
 
 @Component({
   selector: 'app-my-profile',
