@@ -29,7 +29,7 @@ export class AppComponent implements OnInit{
     private productService: ProductService
   ) {
     const layoutChanges = breakpointObserver.observe([
-      '(min-width: 600px)',
+      '(min-width: 600px)', // switch the layout to mobile when the width is less than 600px
     ]);
     layoutChanges.subscribe(result => {
       this.hideMenu = !result.matches;
@@ -37,6 +37,7 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    // fetch user, product and cart details in the beginning
     forkJoin([
       this.userService.getUser(this.userId),
       this.productService.getProducts(),
@@ -46,7 +47,6 @@ export class AppComponent implements OnInit{
       this.store.dispatch(retrieveProductsList({products: result[1]}));
       this.store.dispatch(retrieveCartList(result[2]));
       this.isLoaded = true;
-
     });
   }
 }

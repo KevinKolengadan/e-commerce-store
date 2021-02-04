@@ -1,0 +1,110 @@
+.grid-container {
+  margin: 20px;
+}
+
+.dashboard-card {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+}
+
+.more-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+.dashboard-card-content {
+  text-align: center;
+}
+
+
+.sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidenav {
+  padding: 20px;
+}
+.row {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: stretch;
+}
+
+.col {
+  flex: 1;
+  margin: 10px;
+  min-width: 400px;
+  min-height: 300px;
+}
+
+.product-image {
+  height: 100px;
+}
+.category {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: gold;
+  padding: 10px;
+  box-shadow: 2px 4px 8px 0 rgb(0 0 0 / 8%);
+}
+
+.description {
+  text-align: justify;
+  text-transform: capitalize;
+}
+
+.mat-spinner {
+  position: absolute;
+  top: 40vh;
+  left: 45vw;
+  opacity: 80%;
+}
+
+.spinner-background {
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0,0,0,0.4);
+  z-index: 1;
+}
+.mat-card-content {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+  place-content: space-between;
+}
+
+.filter-button {
+  position: fixed;
+  z-index: 1;
+  background: #673ab7;
+  color: white;
+  padding: 10px;
+  top: 75px;
+  cursor: pointer;
+  box-shadow: 2px 4px 8px 0 rgba(0, 0, 0, 0.36);
+  border-radius: 0 10px 10px 0;
+}
+
+.padding-top-40 {
+  padding-top: 50px;
+}
+
+.mat-drawer-side {
+  position: fixed;
+  top: 60px;
+}
+
+.mat-radio-button {
+  display: block;
+  margin-bottom: 5px;
+}

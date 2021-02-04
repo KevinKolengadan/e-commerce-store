@@ -1,0 +1,42 @@
+<div *ngIf="cart$ | async">
+  <mat-drawer-container class="container" autosize>
+    <mat-drawer #drawer class="sidenav" mode="side">
+    </mat-drawer>
+    <div class="filter-button" (click)="drawer.toggle()">
+      Show Filters
+    </div>
+    <div class="sidenav-content">
+      <div>
+          <div class="row padding-top-40">
+            <mat-card class="col" *ngFor="let product of getFilteredProducts() | async">
+              <mat-card-content class="dashboard-card-content">
+                <div>
+                  <img class="product-image" [src]="product.image">
+                  <h3>{{product.title}}</h3>
+                </div>
+                <p class="description">{{product.description}}</p>
+                <div class="category"><b>{{product.category}}</b></div>
+                <div *ngIf="getQuantityDetails(product) | async as quantityDetails; else newProduct">
+                  <div><b>{{product.price | currency}}</b></div>
+                  <button type="button" mat-raised-button color="warn" (click)="removeFromCart(product)">
+                    Remove From Cart
+                  </button>
+                </div>
+                <ng-template #newProduct>
+                  <div>
+                    <div><b>{{product.price | currency}}</b></div>
+                    <button type="button" mat-raised-button color="primary" (click)="addToCart(product)">
+                      Add To Cart
+                    </button>
+                  </div>
+                </ng-template>
+              </mat-card-content>
+            </mat-card>
+          </div>
+      </div>
+    </div>
+  </mat-drawer-container>
+</div>
+<div class="spinner-background" *ngIf="loading">
+  <mat-spinner></mat-spinner>
+</div>

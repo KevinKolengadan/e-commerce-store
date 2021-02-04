@@ -21,11 +21,14 @@ import {productsReducer} from './state/products.reducer';
 import {cartReducer} from './state/cart.reducer';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatBadgeModule} from '@angular/material/badge';
+import {DashboardComponent} from './dashboard/dashboard.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MyProfileComponent
+    MyProfileComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +51,8 @@ import {MatBadgeModule} from '@angular/material/badge';
     MatMenuModule,
     MatIconModule,
     MatProgressSpinnerModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]
