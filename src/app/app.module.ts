@@ -26,12 +26,15 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatSelectModule} from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
 import {productFilterReducer} from './state/filter.reducer';
+import {ViewCartComponent} from './view-cart/view-cart.component';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
     AppComponent,
     MyProfileComponent,
-    DashboardComponent
+    DashboardComponent,
+    ViewCartComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +62,8 @@ import {productFilterReducer} from './state/filter.reducer';
     MatSidenavModule,
     MatSelectModule,
     MatRadioModule,
-    FormsModule
+    FormsModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
