@@ -1,11 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {AppState} from './state/app.state';
-import {selectUser} from './state/app.selectors';
-import {User} from './model/user.model';
+import {selectCart, selectUser} from './state/app.selectors';
 import {UserService} from './services/user.service';
 import {retrieveUserDetails} from './state/user.actions';
 import {BreakpointObserver} from '@angular/cdk/layout';
+import {forkJoin} from 'rxjs';
+import {ProductService} from './services/product.service';
+import {retrieveCartList, retrieveProductsList} from './state/products.actions';
 
 @Component({
   selector: 'app-root',
@@ -15,12 +17,16 @@ import {BreakpointObserver} from '@angular/cdk/layout';
 export class AppComponent implements OnInit{
   title = 'e-commerce-store';
   user$ = this.store.pipe(select(selectUser));
+  cart$ = this.store.pipe(select(selectCart));
   hideMenu = true;
+  isLoaded = false;
+  userId = 1;
 
   constructor(
     private store: Store<AppState>,
     private breakpointObserver: BreakpointObserver,
-    private userService: UserService
+    private userService: UserService,
+    private productService: ProductService
   ) {
     const layoutChanges = breakpointObserver.observe([
       '(min-width: 600px)',
@@ -31,8 +37,16 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.userService.getUser(1).subscribe((user: User) => {
-      this.store.dispatch(retrieveUserDetails(user));
+    forkJoin([
+      this.userService.getUser(this.userId),
+      this.productService.getProducts(),
+      this.productService.getCart(this.userId)
+    ]).subscribe(result => {
+      this.store.dispatch(retrieveUserDetails(result[0]));
+      this.store.dispatch(retrieveProductsList({products: result[1]}));
+      this.store.dispatch(retrieveCartList(result[2]));
+      this.isLoaded = true;
+
     });
   }
 }

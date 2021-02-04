@@ -17,6 +17,10 @@ import {HttpClientModule} from '@angular/common/http';
 import {_MatMenuDirectivesModule, MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {productsReducer} from './state/products.reducer';
+import {cartReducer} from './state/cart.reducer';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatBadgeModule} from '@angular/material/badge';
 
 @NgModule({
   declarations: [
@@ -30,7 +34,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatToolbarModule,
     MatButtonModule,
     StoreModule.forRoot({
-      user: userReducer
+      user: userReducer,
+      products: productsReducer,
+      cart: cartReducer
     }),
     ReactiveFormsModule,
     MatCardModule,
@@ -40,7 +46,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatInputModule,
     _MatMenuDirectivesModule,
     MatMenuModule,
-    MatIconModule
+    MatIconModule,
+    MatProgressSpinnerModule,
+    MatBadgeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

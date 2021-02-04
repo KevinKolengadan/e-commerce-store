@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="isLoaded">
   <section *ngIf="user$ | async as user" >
     <header>
       <mat-toolbar color="primary">
@@ -10,15 +10,15 @@
         <span class="user-name" *ngIf="!hideMenu && user.name" >Hi {{user?.name?.firstname}}</span>
         <div class='right-side' *ngIf="!hideMenu">
           <button mat-button [routerLink]="['/myProfile']">My Profile</button>
-          <button class="margin-right-20" mat-button [routerLink]="['/viewCart']">View Cart</button>
+          <button class="margin-right-20" mat-button [routerLink]="['/viewCart']" matBadgeColor="accent" [matBadge]="(cart$ | async)?.products?.length">View Cart</button>
         </div>
         <div *ngIf="hideMenu">
           <a [matMenuTriggerFor]="menu">
-            <span class="user-name" *ngIf="user?.name">Hi  {{user?.name?.firstname}}</span> <mat-icon>menu</mat-icon>
+            <span class="user-name" *ngIf="user?.name">Hi {{user?.name?.firstname}}</span> <mat-icon>menu</mat-icon>
           </a>
           <mat-menu #menu="matMenu">
             <button mat-menu-item [routerLink]="['/myProfile']">My Profile</button>
-            <button mat-menu-item [routerLink]="['/viewCart']" matBadgeColor="warn">View Cart</button>
+            <button mat-menu-item [routerLink]="['/viewCart']" matBadgeColor="warn" [matBadge]="(cart$ | async)?.products?.length">View Cart</button>
           </mat-menu>
         </div>
       </mat-toolbar>
@@ -29,4 +29,7 @@
       <router-outlet></router-outlet>
     </div>
   </section>
+</div>
+<div *ngIf="!isLoaded">
+  <mat-spinner></mat-spinner>
 </div>
