@@ -2,11 +2,17 @@
   <section *ngIf="user$ | async as user" >
     <header>
       <mat-toolbar color="primary">
-        <span class="nav-spacer">
+        <span >
           <button mat-button [routerLink]="['/']">
             <h3>CKart</h3>
           </button>
         </span>
+        <div class="nav-spacer">
+          <mat-form-field appearance="legacy">
+            <mat-label>Search Products</mat-label>
+            <input matInput [(ngModel)]="searchProduct" (ngModelChange)="updateValue()">
+          </mat-form-field>
+        </div>
         <span class="user-name" *ngIf="!hideMenu && user.name" >Hi {{user?.name?.firstname}}</span>
         <div class='right-side' *ngIf="!hideMenu">
           <button mat-button [routerLink]="['/myProfile']">My Profile</button>

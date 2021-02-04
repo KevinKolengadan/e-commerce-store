@@ -7,4 +7,5 @@ export interface AppState {
   user: User;
   products: Product[];
   cart: Cart;
+  productFilter: string;
 }

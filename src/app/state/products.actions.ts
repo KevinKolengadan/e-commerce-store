@@ -21,3 +21,10 @@ export const retrieveCartList = createAction(
   '[Cart Object/API] Retrieve Cart Details Success',
   props<Cart>()
 );
+
+
+export const updateProductFilter = createAction(
+  'string  Updated Product search filter',
+  props<{productFilter: string}>()
+);
+

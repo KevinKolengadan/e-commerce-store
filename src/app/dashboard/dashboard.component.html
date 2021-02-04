@@ -1,6 +1,30 @@
 <div *ngIf="cart$ | async">
   <mat-drawer-container class="container" autosize>
     <mat-drawer #drawer class="sidenav" mode="side">
+      <h3><b>Filters</b></h3>
+      <mat-form-field appearance="outline">
+        <mat-label>Category</mat-label>
+        <mat-select [formControl]="selectedCategories" multiple>
+          <mat-option *ngFor="let category of getCategories() | async" [value]="category">{{category}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <h3><b>Sort By</b></h3>
+      <mat-form-field appearance="outline">
+        <mat-label>Sort by</mat-label>
+        <mat-select [formControl]="sortBy">
+          <mat-option value="id">ID</mat-option>
+          <mat-option value="title">Title</mat-option>
+          <mat-option value="price">Price</mat-option>
+          <mat-option value="category">Category</mat-option>
+          <mat-option value="description">Description</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div>
+        <mat-radio-group [formControl]="sortOrder">
+          <mat-radio-button value="asc">Ascending</mat-radio-button>
+          <mat-radio-button value="desc">Descending</mat-radio-button>
+        </mat-radio-group>
+      </div>
     </mat-drawer>
     <div class="filter-button" (click)="drawer.toggle()">
       Show Filters
@@ -11,7 +35,7 @@
             <mat-card class="col" *ngFor="let product of getFilteredProducts() | async">
               <mat-card-content class="dashboard-card-content">
                 <div>
-                  <img class="product-image" [src]="product.image">
+                  <img class="product-image" alt="Image for {{product.title}}" [src]="product.image">
                   <h3>{{product.title}}</h3>
                 </div>
                 <p class="description">{{product.description}}</p>
