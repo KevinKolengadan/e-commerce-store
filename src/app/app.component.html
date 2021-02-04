@@ -7,10 +7,19 @@
             <h3>CKart</h3>
           </button>
         </span>
-        <span class="user-name" *ngIf="user.name" >Hi {{user?.name?.firstname}}</span>
-        <div class='right-side'>
+        <span class="user-name" *ngIf="!hideMenu && user.name" >Hi {{user?.name?.firstname}}</span>
+        <div class='right-side' *ngIf="!hideMenu">
           <button mat-button [routerLink]="['/myProfile']">My Profile</button>
           <button class="margin-right-20" mat-button [routerLink]="['/viewCart']">View Cart</button>
+        </div>
+        <div *ngIf="hideMenu">
+          <a [matMenuTriggerFor]="menu">
+            <span class="user-name" *ngIf="user?.name">Hi  {{user?.name?.firstname}}</span> <mat-icon>menu</mat-icon>
+          </a>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item [routerLink]="['/myProfile']">My Profile</button>
+            <button mat-menu-item [routerLink]="['/viewCart']" matBadgeColor="warn">View Cart</button>
+          </mat-menu>
         </div>
       </mat-toolbar>
     </header>

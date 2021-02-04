@@ -1,7 +1,6 @@
 export interface User {
   id?: number;
   address: Address;
-  geolocation: GeoLocation;
   email: string;
   name: Name;
   password?: string;
@@ -9,12 +8,25 @@ export interface User {
   username: string;
 }
 
+export interface UpdateUserModel {
+  address: Address;
+  email: string;
+  username: string;
+  geolocation: GeoLocation;
+  firstname: string;
+  lastname: string;
+  password?: string;
+  phone: string;
+  number: number;
+  zipcode: string;
+}
+
 export interface Address {
   city: string;
   geolocation?: GeoLocation;
-  number: number;
+  number?: number;
   street: string;
-  zipcode: string;
+  zipcode?: string;
 }
 
 export interface Name {

@@ -46,17 +46,14 @@
       <div class="row">
           <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="Password" formControlName="password">
-            <mat-error *ngIf="userForm.controls['password'].hasError('required')">
-              Street Number is <strong>required</strong>
-            </mat-error>
+            <input matInput placeholder="Password" type="password" formControlName="password">
           </mat-form-field>
         </div>
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="Repeat Password" formControlName="repeatPassword" pattern="{{userForm.controls['password'].value}}">
+            <input matInput placeholder="Repeat Password" type="password" formControlName="repeatPassword" pattern="{{userForm.controls['password'].value}}">
             <mat-error *ngIf="userForm.controls['repeatPassword'].hasError('pattern')">
-              Street Number is <strong>required</strong>
+              Repeat password should match the password
             </mat-error>
           </mat-form-field>
         </div>

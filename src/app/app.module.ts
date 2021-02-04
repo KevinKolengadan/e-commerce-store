@@ -14,6 +14,9 @@ import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {HttpClientModule} from '@angular/common/http';
+import {_MatMenuDirectivesModule, MatMenuModule} from '@angular/material/menu';
+import {MatIconModule} from '@angular/material/icon';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -32,8 +35,12 @@ import {HttpClientModule} from '@angular/common/http';
     ReactiveFormsModule,
     MatCardModule,
     MatFormFieldModule,
+    MatSnackBarModule,
     HttpClientModule,
-    MatInputModule
+    MatInputModule,
+    _MatMenuDirectivesModule,
+    MatMenuModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
