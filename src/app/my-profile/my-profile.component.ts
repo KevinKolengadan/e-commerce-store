@@ -7,6 +7,7 @@ import {selectUser} from '../state/app.selectors';
 import {UpdateUserModel, User} from '../model/user.model';
 import {updateUser} from '../state/user.actions';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {MustMatch} from '../validators/must-match.validator';
 
 @Component({
   selector: 'app-my-profile',
@@ -29,8 +30,12 @@ export class MyProfileComponent {
     lat: [null, Validators.required],
     long: [null, Validators.required],
     phone: [null, Validators.required],
+  }, {
+    validator: MustMatch('password', 'repeatPassword')
   });
   userId: number;
+  hide = true;
+  hideRepeat = true;
 
   constructor(
     private fb: FormBuilder,
@@ -53,8 +58,8 @@ export class MyProfileComponent {
         lat: user?.address?.geolocation?.lat ? user?.address?.geolocation.lat : '',
         long: user?.address?.geolocation?.long ? user?.address?.geolocation.long : '',
         phone: user?.phone ? user?.phone : '',
-        password: '',
-        repeatPassword: '',
+        password: user?.password ? user?.password : '',
+        repeatPassword: user?.password ? user?.password : '',
       });
     });
   }

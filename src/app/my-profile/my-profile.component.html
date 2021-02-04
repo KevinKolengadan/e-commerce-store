@@ -46,13 +46,15 @@
       <div class="row">
           <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="Password" type="password" formControlName="password">
+            <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password">
+            <mat-icon matSuffix color="primary" class="clickable" (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </mat-form-field>
         </div>
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="Repeat Password" type="password" formControlName="repeatPassword" pattern="{{userForm.controls['password'].value}}">
-            <mat-error *ngIf="userForm.controls['repeatPassword'].hasError('pattern')">
+            <input matInput placeholder="Repeat Password" [type]="hideRepeat ? 'password' : 'text'" formControlName="repeatPassword">
+            <mat-icon matSuffix color="primary" class="clickable" (click)="hideRepeat = !hideRepeat">{{hideRepeat ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <mat-error *ngIf="userForm.controls['repeatPassword'].hasError('mustMatch')">
               Repeat password should match the password
             </mat-error>
           </mat-form-field>
