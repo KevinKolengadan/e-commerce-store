@@ -1,0 +1,32 @@
+.mat-toolbar {
+  .nav-spacer {
+    flex: 1 1 auto;
+  }
+  button {
+    margin: 0 10px;
+  }
+  .right-side {
+    button {
+      border: 1px solid;
+    }
+  }
+  .user-name {
+    padding-right: 1rem;
+  }
+  .mat-icon {
+    vertical-align: text-bottom
+  }
+  a {
+    cursor: pointer;
+  }
+}
+
+header {
+  position: fixed;
+  width: 100vw;
+  top: 0;
+  z-index: 2;
+}
+
+
+

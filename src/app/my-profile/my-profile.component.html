@@ -1,0 +1,122 @@
+<form class="container" [formGroup]="userForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <mat-card-title>Update My Profile</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="First name" formControlName="firstname">
+            <mat-error *ngIf="userForm.controls['firstname'].hasError('required')">
+              First name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Last name" formControlName="lastname">
+            <mat-error *ngIf="userForm.controls['lastname'].hasError('required')">
+              Last name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Email" formControlName="email" type="email">
+            <mat-error *ngIf="userForm.controls['email'].hasError('required')">
+              Email is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="userForm.controls['email'].hasError('email')">
+              Email format is incorrect
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Phone Number" formControlName="phone">
+            <mat-error *ngIf="userForm.controls['phone'].hasError('required')">
+              Phone Number is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+          <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Password" formControlName="password">
+            <mat-error *ngIf="userForm.controls['password'].hasError('required')">
+              Street Number is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Repeat Password" formControlName="repeatPassword" pattern="{{userForm.controls['password'].value}}">
+            <mat-error *ngIf="userForm.controls['repeatPassword'].hasError('pattern')">
+              Street Number is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <h2 class="margin-left-16">Address</h2>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Street Number" formControlName="number" type="number">
+            <mat-error *ngIf="userForm.controls['number'].hasError('required')">
+              Street Number is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Street Address" formControlName="street">
+            <mat-error *ngIf="userForm.controls['street'].hasError('required')">
+              Street Address is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="City" formControlName="city">
+            <mat-error *ngIf="userForm.controls['city'].hasError('required')">
+              City is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Zip Code" formControlName="zipcode">
+            <mat-error *ngIf="userForm.controls['zipcode'].hasError('required')">
+              Zip Code is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Latitude" formControlName="lat">
+            <mat-error *ngIf="userForm.controls['lat'].hasError('required')">
+              Latitude is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Longitude" formControlName="long">
+            <mat-error *ngIf="userForm.controls['long'].hasError('required')">
+              Longitude is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">Update</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
