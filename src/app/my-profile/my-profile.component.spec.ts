@@ -194,7 +194,8 @@ describe('MyProfileComponent', () => {
   it('validate update function', () => {
     fixture.detectChanges();
     expect(component.userForm.valid).toBeTruthy();
-    const submitButton = document.querySelector('#submit');
+    const compiled = fixture.nativeElement;
+    const submitButton = compiled.querySelector('#submit');
     component.userForm.patchValue({
       password: 'qwerty',
       repeatPassword: 'qwert123y'

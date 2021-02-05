@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import {select, Store} from '@ngrx/store';
 import {selectCart, selectProducts, selectUser} from '../state/app.selectors';
@@ -22,12 +22,14 @@ export class ViewCartComponent {
   user$ = this.store.pipe(select(selectUser));
   loading = false;
   displayedColumns: string[] = ['image', 'title', 'category', 'quantity', 'price', 'removeFromCart'];
-
+  productDetails: MatTableDataSource<{quantity: number, product: Product}>;
   constructor(
     private breakpointObserver: BreakpointObserver,
     private store: Store<AppState>,
     private productService: ProductService
   ) {
+    this.loading = true;
+    this.getProductDetails().subscribe(() => this.loading = false);
   }
 
   getProductDetails(): Observable<MatTableDataSource<{quantity: number, product: Product}>> {
@@ -37,18 +39,20 @@ export class ViewCartComponent {
     ]).pipe(map(result => {
       const products = result[0];
       const cart = result[1];
-      return new MatTableDataSource<{quantity: number, product: Product}>(cart.products ? cart.products.map(cartProduct => {
+      this.productDetails = new MatTableDataSource<{quantity: number, product: Product}>(cart.products ? cart.products.map(cartProduct => {
         return {
           quantity: cartProduct.quantity,
           product: products.filter(product => product.id === cartProduct.productId)?.[0]
         };
       }) : []);
+      return this.productDetails;
     }));
   }
 
   removeFromCart(product: Product): void {
     this.store.dispatch(removeProduct(product));
     this.updateCart();
+    this.getProductDetails().subscribe(); // Update Cart Details
   }
 
   updateCart(): void {
@@ -57,6 +61,7 @@ export class ViewCartComponent {
       this.cart$.pipe(take(1)).subscribe(cart => {
         this.productService.updateCart(user.id ? user.id : 0, cart).subscribe(() => {
           this.loading = false;
+          this.getProductDetails().subscribe();
         });
       });
     });

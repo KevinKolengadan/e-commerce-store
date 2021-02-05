@@ -8,11 +8,21 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 
 import { ViewCartComponent } from './view-cart.component';
+import {MockStore, provideMockStore} from '@ngrx/store/testing';
+import {UserServiceMock} from '../../../mocks/user.service.mock';
+import {ProductServiceMock} from '../../../mocks/product.service.mock';
+import {ProductService} from '../services/product.service';
 
 describe('ViewCartComponent', () => {
   let component: ViewCartComponent;
   let fixture: ComponentFixture<ViewCartComponent>;
-
+  let store: MockStore;
+  const initialState = {
+    products: new ProductServiceMock().getMockProducts(),
+    productFilter: '',
+    cart: new ProductServiceMock().getMockCart(),
+    user: new UserServiceMock().getMockUser()
+  };
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ViewCartComponent],
@@ -24,8 +34,14 @@ describe('ViewCartComponent', () => {
         MatGridListModule,
         MatIconModule,
         MatMenuModule,
+      ],
+      providers: [
+        provideMockStore({initialState}),
+        { provide: ProductService, useClass: ProductServiceMock}
       ]
-    }).compileComponents();
+    });
+
+    store = TestBed.inject(MockStore);
   }));
 
   beforeEach(() => {
@@ -36,5 +52,10 @@ describe('ViewCartComponent', () => {
 
   it('should compile', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('total number of items in cart check', () => {
+    fixture.detectChanges();
+    expect(component.productDetails.data.length).toBe(3);
   });
 });
