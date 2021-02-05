@@ -36,6 +36,7 @@ export class MyProfileComponent {
   userId: number;
   hide = true;
   hideRepeat = true;
+  loading = false;
 
   constructor(
     private fb: FormBuilder,
@@ -86,9 +87,11 @@ export class MyProfileComponent {
       if (this.userForm.controls.password.value) {
         newUser.password = this.userForm.controls.password.value;
       }
+      this.loading = true;
       this.userService.updateUser(this.userId, newUser).subscribe((user: User) => {
         this.snackBar.open('User Details updated successfully', 'Dismiss', {duration: 3000});
         this.store.dispatch(updateUser(user));
+        this.loading = false;
       });
     } else {
       this.userForm.markAsDirty();

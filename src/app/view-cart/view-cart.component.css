@@ -63,7 +63,7 @@
   position: absolute;
   top: 40vh;
   left: 45vw;
-  opacity: 80%;
+  opacity: 0.8;
 }
 
 .spinner-background {
