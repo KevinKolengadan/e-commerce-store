@@ -53,6 +53,16 @@ export class DashboardComponent {
     return false;
   }
 
+  numberSort(a: number, b: number): number{
+    if (a < b) {
+      return -1;
+    } else if (a > b) {
+      return 1;
+    }
+    return 0;
+  }
+
+
   getFilteredProducts(): Observable<Product[]> {
     return this.product$.pipe(map(products => {
       return products
@@ -71,13 +81,13 @@ export class DashboardComponent {
               result = a.title.localeCompare(b.title);
             }
             else if (this.sortBy.value === 'price'){
-              result = a.price.toString().localeCompare(b.price.toString());
+              result = this.numberSort(a.price, b.price);
             }
             else if (this.sortBy.value === 'description'){
               result = a.description.localeCompare(b.description);
             }
             else if (this.sortBy.value === 'id'){
-              result = a.id.toString().localeCompare(b.id.toString());
+              result = this.numberSort(a.id, b.id);
             }
             if (this.sortOrder.value === 'desc'){
               result = -result;

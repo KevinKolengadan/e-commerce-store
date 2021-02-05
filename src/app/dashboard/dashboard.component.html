@@ -36,19 +36,20 @@
               <mat-card-content class="dashboard-card-content">
                 <div>
                   <img class="product-image" alt="Image for {{product.title}}" [src]="product.image">
-                  <h3>{{product.title}}</h3>
+                  <h3 class="product-title">{{product.title}}</h3>
                 </div>
-                <p class="description">{{product.description}}</p>
+                <div class="description">
+                  <p>{{product.description}}</p></div>
                 <div class="category"><b>{{product.category}}</b></div>
                 <div *ngIf="getQuantityDetails(product) | async as quantityDetails; else newProduct">
-                  <div><b>{{product.price | currency}}</b></div>
+                  <div class="price"><b>{{product.price | currency}}</b></div>
                   <button type="button" mat-raised-button color="warn" (click)="removeFromCart(product)">
                     Remove From Cart
                   </button>
                 </div>
                 <ng-template #newProduct>
                   <div>
-                    <div><b>{{product.price | currency}}</b></div>
+                    <div class="price"><b>{{product.price | currency}}</b></div>
                     <button type="button" mat-raised-button color="primary" (click)="addToCart(product)">
                       Add To Cart
                     </button>

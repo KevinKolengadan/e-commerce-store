@@ -1,5 +1,6 @@
 .grid-container {
   margin: 20px;
+  max-width: 1500px;
 }
 
 .dashboard-card {
@@ -45,7 +46,7 @@
 }
 
 .product-image {
-  height: 100px;
+  height: 200px;
 }
 .category {
   position: absolute;
@@ -107,4 +108,12 @@
 .mat-radio-button {
   display: block;
   margin-bottom: 5px;
+}
+
+.product-title {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  color: #535766;
+  font-size: 14px;
 }
