@@ -1,6 +1,6 @@
 <div *ngIf="cart$ | async">
   <mat-drawer-container class="container" autosize>
-    <mat-drawer #drawer class="sidenav" mode="side">
+    <mat-drawer #drawer class="sidenav" mode="side" [opened]="!largescreen">
       <h3><b>Filters</b></h3>
       <mat-form-field appearance="outline">
         <mat-label>Category</mat-label>
@@ -26,7 +26,7 @@
         </mat-radio-group>
       </div>
     </mat-drawer>
-    <div class="filter-button" (click)="drawer.toggle()">
+    <div class="filter-button" *ngIf="largescreen" (click)="drawer.toggle()">
       Show Filters
     </div>
     <div class="sidenav-content">
@@ -35,11 +35,14 @@
             <mat-card class="col" *ngFor="let product of getFilteredProducts() | async">
               <mat-card-content class="dashboard-card-content">
                 <div>
-                  <img class="product-image" alt="Image for {{product.title}}" [src]="product.image">
+                  <div class="image-container">
+                    <img class="product-image" alt="Image for {{product.title}}" [src]="product.image">
+                  </div>
                   <h3 class="product-title">{{product.title}}</h3>
                 </div>
                 <div class="description">
-                  <p>{{product.description}}</p></div>
+                  <p matTooltip="{{product.description}}">{{product.description.substring(0,100)}}</p>
+                </div>
                 <div class="category"><b>{{product.category}}</b></div>
                 <div *ngIf="getQuantityDetails(product) | async as quantityDetails; else newProduct">
                   <div class="price"><b>{{product.price | currency}}</b></div>

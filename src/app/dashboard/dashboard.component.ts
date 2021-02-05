@@ -23,6 +23,7 @@ export class DashboardComponent {
   searchProduct$ = this.store.pipe(select(selectProductFilter));
   searchProduct: string;
   loading = false;
+  largescreen = false;
   selectedCategories = new FormControl([]);
   sortBy = new FormControl('id');
   sortOrder = new FormControl('asc');
@@ -32,6 +33,12 @@ export class DashboardComponent {
     private store: Store<AppState>,
     private productService: ProductService
   ) {
+    const layoutChanges = breakpointObserver.observe([
+      '(min-width: 1200px)', // set max width
+    ]);
+    layoutChanges.subscribe(result => {
+      this.largescreen = !result.matches;
+    });
     this.searchProduct$.subscribe( productFilter => this.searchProduct = productFilter.toLowerCase());
   }
   filterProducts(product: Product): boolean {

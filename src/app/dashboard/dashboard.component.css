@@ -1,6 +1,6 @@
-.grid-container {
-  margin: 20px;
-  max-width: 1500px;
+.container {
+  max-width: 1200px;
+  margin: auto;
 }
 
 .dashboard-card {
@@ -41,8 +41,8 @@
 .col {
   flex: 1;
   margin: 10px;
-  min-width: 400px;
-  min-height: 300px;
+  min-width: 200px;
+  min-height: 200px;
 }
 
 .product-image {
@@ -60,6 +60,11 @@
 .description {
   text-align: justify;
   text-transform: capitalize;
+}
+.description p {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .mat-spinner {
@@ -116,4 +121,16 @@
   overflow: hidden;
   color: #535766;
   font-size: 14px;
+}
+.image-container {
+  height: 200px;
+}
+.image-container img {
+  max-height: 100%;
+  max-width: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
 }

@@ -28,6 +28,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import {productFilterReducer} from './state/filter.reducer';
 import {ViewCartComponent} from './view-cart/view-cart.component';
 import {MatTableModule} from '@angular/material/table';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import {MatTableModule} from '@angular/material/table';
     MatSelectModule,
     MatRadioModule,
     FormsModule,
-    MatTableModule
+    MatTableModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]
