@@ -63,7 +63,6 @@ describe('MyProfileComponent', () => {
 
     expect(component.userForm.valid).toBeTruthy();
     fixture.detectChanges();
-    const compiled = fixture.nativeElement;
     component.userForm.patchValue({
       firstname: ''
     });
@@ -75,7 +74,6 @@ describe('MyProfileComponent', () => {
 
     expect(component.userForm.valid).toBeTruthy();
     fixture.detectChanges();
-    const compiled = fixture.nativeElement;
     component.userForm.patchValue({
       lastname: ''
     });
@@ -87,7 +85,6 @@ describe('MyProfileComponent', () => {
 
     expect(component.userForm.valid).toBeTruthy();
     fixture.detectChanges();
-    const compiled = fixture.nativeElement;
     component.userForm.patchValue({
       email: ''
     });
@@ -107,7 +104,6 @@ describe('MyProfileComponent', () => {
 
     expect(component.userForm.valid).toBeTruthy();
     fixture.detectChanges();
-    const compiled = fixture.nativeElement;
     component.userForm.patchValue({
       phone: ''
     });
@@ -119,7 +115,6 @@ describe('MyProfileComponent', () => {
 
     expect(component.userForm.valid).toBeTruthy();
     fixture.detectChanges();
-    const compiled = fixture.nativeElement;
     component.userForm.patchValue({
       number: ''
     });
@@ -131,7 +126,6 @@ describe('MyProfileComponent', () => {
 
     expect(component.userForm.valid).toBeTruthy();
     fixture.detectChanges();
-    const compiled = fixture.nativeElement;
     component.userForm.patchValue({
       street: ''
     });
@@ -143,7 +137,6 @@ describe('MyProfileComponent', () => {
 
     expect(component.userForm.valid).toBeTruthy();
     fixture.detectChanges();
-    const compiled = fixture.nativeElement;
     component.userForm.patchValue({
       city: ''
     });
@@ -154,7 +147,6 @@ describe('MyProfileComponent', () => {
   it('validate zipcode is required', () => {
     expect(component.userForm.valid).toBeTruthy();
     fixture.detectChanges();
-    const compiled = fixture.nativeElement;
     component.userForm.patchValue({
       zipcode: ''
     });
@@ -165,7 +157,6 @@ describe('MyProfileComponent', () => {
   it('validate lat is required', () => {
     expect(component.userForm.valid).toBeTruthy();
     fixture.detectChanges();
-    const compiled = fixture.nativeElement;
     component.userForm.patchValue({
       lat: ''
     });
@@ -176,7 +167,6 @@ describe('MyProfileComponent', () => {
   it('validate long is required', () => {
     expect(component.userForm.valid).toBeTruthy();
     fixture.detectChanges();
-    const compiled = fixture.nativeElement;
     component.userForm.patchValue({
       long: ''
     });
@@ -187,7 +177,6 @@ describe('MyProfileComponent', () => {
   it('validate password and repeat matches', () => {
     expect(component.userForm.valid).toBeTruthy();
     fixture.detectChanges();
-    const compiled = fixture.nativeElement;
     component.userForm.patchValue({
       password: 'qwerty',
       repeatPassword: 'asdfg'
@@ -201,5 +190,26 @@ describe('MyProfileComponent', () => {
     });
     fixture.detectChanges();
     expect(component.userForm.valid).toBeTruthy();
+  });
+  it('validate update function', () => {
+    fixture.detectChanges();
+    expect(component.userForm.valid).toBeTruthy();
+    const submitButton = document.querySelector('#submit');
+    component.userForm.patchValue({
+      password: 'qwerty',
+      repeatPassword: 'qwert123y'
+    });
+    submitButton.click();
+    fixture.detectChanges();
+    let snackingDiv = document.querySelector('snack-bar-container');
+    expect(snackingDiv).toBeNull();
+    component.userForm.patchValue({
+      password: 'qwerty',
+      repeatPassword: 'qwerty'
+    });
+    submitButton.click();
+    fixture.detectChanges();
+    snackingDiv = document.querySelector('snack-bar-container');
+    expect(snackingDiv).not.toBeNull();
   });
 });
