@@ -33,5 +33,5 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.AWS_PEM }}
         port: 22
-        source: "src"
-        target: "/var/www/e-commerce-store/dist"
+        source: "/src/"
+        target: "/var/www/e-commerce-store/dist/"
