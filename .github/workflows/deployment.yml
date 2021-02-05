@@ -31,7 +31,7 @@ jobs:
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
-        fingerprint: ${{ secrets.AWS_PEM }}
+        key: ${{ secrets.AWS_PEM }}
         port: 22
         source: "src"
         target: "/var/www/e-commerce-store/dist"
