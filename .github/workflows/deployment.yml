@@ -24,7 +24,7 @@ jobs:
     - name: npm install, build, and test
       run: |
         npm install
-        npm build --prod --build-optimizer --if-present
+        npm run-script build --prod --build-optimizer --if-present
     
     - name: 'SCP to AWS EC2'
       uses: appleboy/scp-action@master
