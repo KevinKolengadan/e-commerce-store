@@ -87,7 +87,7 @@ export class MyProfileComponent {
         newUser.password = this.userForm.controls.password.value;
       }
       this.userService.updateUser(this.userId, newUser).subscribe((user: User) => {
-        this.snackBar.open('User Details updated successfully', 'Dismiss', {duration: 1000});
+        this.snackBar.open('User Details updated successfully', 'Dismiss', {duration: 3000});
         this.store.dispatch(updateUser(user));
       });
     } else {
