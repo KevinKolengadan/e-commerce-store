@@ -14,18 +14,18 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
-#     steps:
-#     - uses: actions/checkout@master
-#     - name: Set up Node.js version
-#       uses: actions/setup-node@v1
-#       with:
-#         node-version: '12.x'
-
-#     - name: npm install, build, and test
-#       run: |
-#         npm install
-#         npm run-script build --prod --build-optimizer --if-present
     steps:
+    - uses: actions/checkout@master
+    - name: Set up Node.js version
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+
+    - name: npm install, build, and test
+      run: |
+        npm install
+        npm run-script build --prod --build-optimizer --if-present
+        
     - name: 'SCP to AWS EC2'
       uses: appleboy/scp-action@master
       with:
@@ -33,5 +33,5 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.AWS_PEM }}
         port: 22
-        source: "/src/"
+        source: "/dist/"
         target: "/var/www/e-commerce-store/dist/"
